@@ -1,15 +1,15 @@
-import * as Joi from "joi";
+import Joi from "joi";
 
 export const bookingValidation = Joi.object({
   pnr: Joi.string().required(),
-  user_id: Joi.number().integer().required(),
-  train_id: Joi.number().integer().required(),
+  user_id: Joi.number().integer().greater(0).required(),
+  train_id: Joi.number().integer().greater(0).required(),
   journey_date: Joi.date().required(),
   booking_status: Joi.string()
     .valid("Confirmed", "Waiting", "Cancelled")
     .required(),
   booking_date: Joi.date().default(() => new Date()),
-  total_amount: Joi.number().required(),
+  total_amount: Joi.number().greater(0).required(),
   seat_numbers: Joi.array().items(Joi.string()).required(),
   user_name: Joi.string().max(255).required(),
   gender: Joi.string().valid("Male", "Female", "Other").required(),
