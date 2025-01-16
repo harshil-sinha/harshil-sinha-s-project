@@ -1,0 +1,84 @@
+<div class="login-container">
+  <div class="color-background">
+    <!-- <div class="background-text">Your Rail Ticket In Your Pocket</div> -->
+  </div>
+
+  <div class="form-section">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <div class="header">
+        <h2>Login</h2>
+      </div>
+      <div *ngIf="isLoading" class="loader-container">
+        <div class="loader"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          formControlName="email"
+          type="email"
+          id="email"
+          class="form-control"
+          required
+          pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$"
+        />
+        <span
+          *ngIf="
+            loginForm.controls['email'].invalid &&
+            loginForm.controls['email'].touched
+          "
+          class="error-message"
+        >
+          Please enter a valid email address 😡
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          formControlName="password"
+          type="password"
+          id="password"
+          class="form-control"
+          minlength="6"
+          required
+        />
+        <span
+          *ngIf="
+            loginForm.controls['password'].hasError('required') &&
+            loginForm.controls['password'].touched
+          "
+          class="error-message"
+        >
+          Password is required 😡
+        </span>
+        <span
+          *ngIf="
+            loginForm.controls['password'].hasError('minlength') &&
+            loginForm.controls['password'].touched
+          "
+          class="error-message"
+        >
+          Password must be at least 6 characters long 🤚
+        </span>
+        <span *ngIf="passwordError" class="error-message">
+          Incorrect password 😡
+        </span>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="loginForm.invalid"
+        class="btn submit-btn"
+      >
+        Login
+      </button>
+
+      <div class="signup-link">
+        <p>
+          Don't have an account? <a [routerLink]="['/signup']">Sign up here</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

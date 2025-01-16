@@ -1,0 +1,240 @@
+.signup-container {
+  display: flex;
+  height: 100vh;
+}
+
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #0056b3;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.color-background {
+  flex: 1;
+  background-image: url("./train_img.jpg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  overflow: hidden;
+  height: 70vh;
+  margin-top: 100px;
+  animation: hangingMovement 2s ease-in-out infinite;
+}
+
+.background-text {
+  font-size: 25px;
+  text-align: center;
+  font-weight: bold;
+  color: #0056b3;
+  letter-spacing: 3px;
+  word-spacing: 10px;
+  position: absolute;
+  bottom: 130px;
+}
+
+.form-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+.signup-form {
+  width: 100%;
+  max-width: 500px;
+  background-color: #ffffff70;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  background-color: #0056b3;
+  display: block;
+  margin: 0 auto;
+  padding: 13px 60px;
+  text-align: center;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #1069c7;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 16px;
+  color: rgb(4, 76, 157);
+  font-weight: bold;
+  display: block;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  font-size: 14px;
+  box-sizing: border-box;
+  background: transparent;
+  color: #000;
+}
+
+.form-control:focus {
+  border-bottom: 2px solid #4caf50;
+  outline: none;
+}
+
+.form-group-inline {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 8px;
+}
+
+.gender-container,
+.dob-container {
+  flex: 1;
+}
+
+.gender-container label,
+.dob-container label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.gender-container select,
+.dob-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.submit-btn:disabled {
+  background-color: #b1b1b1;
+  cursor: not-allowed;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-link p {
+  color: rgb(4, 76, 157);
+}
+
+.login-link a {
+  color: #4695e9c5;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+.otp-section {
+  margin-top: 40px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: rgb(4, 76, 157);
+}
+.header h2 {
+  font-size: 28px;
+}
+.otp-form {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.otp-section .form-control {
+  font-size: 16px;
+  color: rgb(4, 76, 157);
+}
+
+.otp-section .submit-btn {
+  background-color: #0056b3;
+  display: block;
+  margin: 0 auto;
+  padding: 8px 25px;
+  text-align: center;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.otp-section .submit-btn:disabled {
+  background-color: #b1b1b1;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+}
+
+@keyframes hangingMovement {
+  0% {
+    transform: translateY(0); 
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0); 
+  }
+}

@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+/* Full background styling */
+/* body {
+    margin: 0;
+    width: 100%;
+    padding: 0;
+    height: 100vh;
+    background: url('https://www.evitalrx.in/webroot/images/hero-dot-bg.png') center right;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
+   */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

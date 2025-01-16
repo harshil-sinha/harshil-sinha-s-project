@@ -1,0 +1,145 @@
+<div class="container">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <button class="btn-show-tickets" (click)="fetchUserTickets()">
+        My Booking
+      </button>
+
+      <div class="user-email" *ngIf="userEmail">
+        <span>{{ userEmail }}</span>
+        <button class="btn-logout" (click)="onLogout()">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Welcome to the Train Booking System</h1>
+      <p>Search and book trains easily with just a few clicks.</p>
+    </div>
+  </header>
+
+  <form
+    [formGroup]="trainSearchForm"
+    (ngSubmit)="onSubmit()"
+    class="search-form"
+  >
+    <div class="search-bar">
+      <select formControlName="from" class="search-input">
+        <option value="" disabled selected>Select Departure Station</option>
+        <option *ngFor="let station of stations" [value]="station.station_name">
+          {{ station.station_name }}
+        </option>
+        <option *ngIf="stations.length === 0" disabled>
+          No stations available
+        </option>
+      </select>
+
+      <select formControlName="to" class="search-input">
+        <option value="" disabled selected>Select Arrival Station</option>
+        <option *ngFor="let station of stations" [value]="station.station_name">
+          {{ station.station_name }}
+        </option>
+        <option *ngIf="stations.length === 0" disabled>
+          No stations available
+        </option>
+      </select>
+
+      <button
+        type="submit"
+        class="search-btn"
+        [disabled]="trainSearchForm.invalid"
+      >
+        Search Trains
+      </button>
+    </div>
+  </form>
+
+  <div *ngIf="isLoading" class="loader-container">
+    <div class="loader"></div>
+  </div>
+
+  <div *ngIf="trains.length > 0" class="train-results">
+    <h2>Available Trains</h2>
+    <p class="train-count">
+      There are {{ trains.length }} trains between {{ searchedFrom }} and
+      {{ searchedTo }}.
+    </p>
+    <table class="train-table">
+      <thead>
+        <tr>
+          <th>Train Name</th>
+          <th>Train No.</th>
+          <th>Arrival</th>
+          <th>Departure</th>
+          <th>Fare</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let train of trains" class="train-row">
+          <td>{{ train.train_name }}</td>
+          <td>{{ train.train_number }}</td>
+          <td>{{ train.arrival_time }}</td>
+          <td>{{ train.departure_time }}</td>
+          <td>₹{{ train.fare }}</td>
+          <td>
+            <button class="btn-book" (click)="openBookingForm(train)">
+              Book Now
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="showTicketPopup" class="ticket-popup">
+    <div class="ticket-popup-content">
+      <h2>My Tickets</h2>
+      <table class="ticket-table">
+        <thead>
+          <tr>
+            <th>PNR</th>
+            <th>User Name</th>
+            <th>Gender</th>
+            <th>Train Number</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Amount</th>
+            <th>Journey Date</th>
+            <th>Class</th>
+            <th>Status</th>
+            <th>Seat Number</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ticket of userTickets">
+            <td>{{ ticket.pnr }}</td>
+            <td>{{ ticket.user_name }}</td>
+            <td>{{ ticket.gender }}</td>
+            <td>{{ ticket.train_id }}</td>
+            <td>{{ ticket.from_city }}</td>
+            <td>{{ ticket.to_city }}</td>
+            <td>{{ ticket.total_amount }}</td>
+            <td>{{ ticket.journey_date | date : "d/M/yy" }}</td>
+            <td>{{ ticket.booking_class }}</td>
+            <td>{{ ticket.booking_status }}</td>
+            <td>{{ ticket.seat_number }}</td>
+            <td>
+              <button class="btn-cancel" (click)="cancelTicket(ticket.pnr)">
+                Cancel
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button (click)="closeTicketPopup()" class="btn-cancel">Close</button>
+    </div>
+  </div>
+</div>
