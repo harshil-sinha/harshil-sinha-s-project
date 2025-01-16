@@ -19,6 +19,7 @@ const searchCities = async (
       res.status(404).json({
         success: false,
         message: `No trains found between ${from} and ${to}.`,
+        data: {},
       });
       return;
     }
@@ -33,6 +34,7 @@ const searchCities = async (
     res.status(500).json({
       success: false,
       message: "Internal server error.",
+      data: {},
     });
   }
 };
